@@ -4,7 +4,7 @@
 dashboard_enabled: true
 
 # Helm deployment
-helm_enabled: false
+helm_enabled: true
 
 # Registry deployment
 registry_enabled: false
@@ -19,7 +19,7 @@ metrics_server_enabled: false
 # metrics_server_kubelet_preferred_address_types: "InternalIP"
 
 # Rancher Local Path Provisioner
-local_path_provisioner_enabled: false
+local_path_provisioner_enabled: true
 # local_path_provisioner_namespace: "local-path-storage"
 # local_path_provisioner_storage_class: "local-path"
 # local_path_provisioner_reclaim_policy: Delete
@@ -84,13 +84,13 @@ rbd_provisioner_enabled: false
 # rbd_provisioner_reclaim_policy: Delete
 
 # Nginx ingress controller deployment
-ingress_nginx_enabled: false
-# ingress_nginx_host_network: false
-ingress_publish_status_address: ""
-# ingress_nginx_nodeselector:
-#   kubernetes.io/os: "linux"
-# ingress_nginx_tolerations:
-#   - key: "node-role.kubernetes.io/master"
+ingress_nginx_enabled: true
+ingress_nginx_host_network: true
+ingress_nginx_nodeselector:
+  node-role.kubernetes.io/ingress: ""
+ingress_nginx_tolerations:
+  - key: "node-role.kubernetes.io/ingress"
+    operator: "Exists"
 #     operator: "Equal"
 #     value: ""
 #     effect: "NoSchedule"
@@ -100,6 +100,11 @@ ingress_publish_status_address: ""
 # ingress_nginx_configmap:
 #   map-hash-bucket-size: "128"
 #   ssl-protocols: "SSLv2"
+ingress_nginx_configmap:
+  server-tokens: "False"
+  proxy-body-size: "2048M"
+  proxy-buffer-size: "16k"
+  worker-shutdown-timeout: "180"
 # ingress_nginx_configmap_tcp_services:
 #   9000: "default/example-go:8080"
 # ingress_nginx_configmap_udp_services:
