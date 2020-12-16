@@ -48,9 +48,9 @@ $vm_memory ||= 2048
 $vm_cpus ||= 2
 $shared_folders ||= {}
 $forwarded_ports ||= {}
-$subnet ||= "172.18.8"
+$subnet ||= "192.168.100"
 $os ||= "ubuntu1804"
-$network_plugin ||= "flannel"
+$network_plugin ||= "calico"
 # Setting multi_networking to true will install Multus: https://github.com/intel/multus-cni
 $multi_networking ||= false
 $download_run_once ||= "True"
